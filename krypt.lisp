@@ -20,11 +20,11 @@
         (j (rem size 4))
         (mask (make-array 4 :initial-contents '(#x23 #x6c #x5b #x8a))))
     (loop for i from 0 below nblocks
-         	do (array-enc-to-int-le buf (* i 4)))
+          do (array-enc-to-int-le buf (* i 4)))
     (if (> j 0)
         (loop for i from 0 below j
               for remain from (* nblocks 4)
-             	do (setf (aref buf remain) (logxor (aref buf remain) (aref mask i))))
+              do (setf (aref buf remain) (logxor (aref buf remain) (aref mask i))))
         )
     )
   )
@@ -66,9 +66,9 @@
                                1)
                             +blocksize+)))
         (loop for pos = (read-sequence buf in)
-             	for i from 0 to nblocks
-             	while (and (< i nblocks) (plusp pos))
-             	do (progn
+              for i from 0 to nblocks
+              while (and (< i nblocks) (plusp pos))
+              do (progn
                    (if decryptp
                        (decrypt buf 0 pos)
                        (encrypt buf pos))
